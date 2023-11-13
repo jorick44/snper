@@ -80,13 +80,13 @@ rule evaluate:
                 else:
                     if a_con >= 0.8: # if not most prevalent aa in a conserved position
                         s = 3 + (1 - a_con) * 5 # heavy penalty
-                        if t_con >= 0.7: # if not most prevalent type in conserved type position
+                        if t_con >= 0.9: # if not most prevalent type in conserved type position
                             return 3 + (1 - t_con) * 5 + s # heavy penalty
                         else: # if not most prevalent type in non conserved position
                             return s + (1 - t_con) * 5 # weak penalty
                     else: # if not most prevalent aa in a non conserved position
                         s = (1 - a_con) * 5 # weak penalty
-                        if t_con >= 0.7: # if not most prevalent type in a type conserved position
+                        if t_con >= 0.9: # if not most prevalent type in a type conserved position
                             return 2 + (1 - t_con) * 5 + s # heavy penalty
                         else: # if not most prevalent type in a type non conserved position
                             return s + (1 - t_con) * 5 # weak penalty
@@ -96,7 +96,7 @@ rule evaluate:
                     if types[mutated_aa_type] == max(types.values()): # if type is most prevalent in position
                         return 3 # not same aa penalty
                     else:
-                        if t_con >= 0.7: # if not most prevalent type in conserved type position
+                        if t_con >= 0.9: # if not most prevalent type in conserved type position
                             return 5 + (1 - t_con) * 10 # heavy penalty
                         else:
                             return 3 + (1 - t_con) * 10 # weaker penalty
